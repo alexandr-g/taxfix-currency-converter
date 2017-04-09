@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { ScrollView, Text } from 'react-native';
-import axios from 'axios';
+import api from '../utils/api';
 
 class RatesList extends Component {
   state = { rates: [] };
 
   componentWillMount() {
-    axios.get('https://txf-ecb.glitch.me/rates')
+    api.getRates()
       .then(response => this.setState({ rates: response.data.rates }));
   }
 
