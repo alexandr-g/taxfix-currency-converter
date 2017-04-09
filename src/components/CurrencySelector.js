@@ -18,7 +18,7 @@ class CurrencySelector extends Component {
   render() {
     let index = 0;
     const allCurrencies = [
-      {key: index++, section: true, label: 'EUR'},
+      {key: index++, label: 'EUR'},
       {key: index++, label: 'USD'},
       {key: index++, label: 'JPY'},
       {key: index++, label: 'BGN'},
@@ -56,6 +56,7 @@ class CurrencySelector extends Component {
       <View>
         <ModalPicker
           data={allCurrencies}
+          onChange={(option) => this.setState({ textInputValue: option.label })}
         >
           <TextInput
             style={currencyInputStyle}
