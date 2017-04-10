@@ -10,6 +10,13 @@ import { currencyInputStyle } from '../styles';
 import CurrencySelector from './CurrencySelector';
 
 class Main extends Component {
+
+  state = {
+    value: '',
+    output: '',
+    rates: []
+  };
+
   render() {
     return (
       <View style={styles.mainContainer}>
