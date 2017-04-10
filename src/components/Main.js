@@ -29,6 +29,7 @@ class Main extends Component {
           underlayColor='white'>
           <Text style={styles.buttonText}>Convert</Text>
         </TouchableHighlight>
+        <Text style={styles.outputText}>{this.state.output}</Text>
       </View>
     )
   }
@@ -68,6 +69,12 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flexDirection: 'column',
+  },
+  outputText: {
+    fontSize: 50,
+    color: 'white',
+    marginTop: 20,
+    textAlign: 'center'
   }
 });
 
