@@ -8,8 +8,47 @@ import {
 } from 'react-native';
 import { currencyInputStyle } from '../styles';
 import CurrencySelector from './CurrencySelector';
+import api from '../utils/api';
 
 class Main extends Component {
+  state = {
+    value: '',
+    output: '',
+    rates: []
+  };
+
+  componentWillMount() {
+    api.getRates()
+      .then(response => this.setState({ rates: response.data.rates }));
+  }
+
+  convertCurrency() {
+    // console.log(this.state.value);
+    // console.log(this.state.value * 1.06);
+    let value = this.state.value;
+    let rate = value * 1.06; // accepts currency as parameter
+    let output = value * rate; // receive rate dynamically
+    let number = output.toPrecision(5);
+    console.log(number);
+    this.setState({ output: number, value: '' });
+  }
+
+  // getCurrencyRate(value) {
+  //   if (this.state.rates.map(text => {
+  //     for (let i in text) {
+  //       if(text[i] === value) {
+  //         return console.log(text.rate)
+  //       }
+  //     }
+  //
+  //   })})}
+
+  handleChange(event) {
+    this.setState({
+      value: event.nativeEvent.text
+    })
+  }
+
   render() {
     return (
       <View style={styles.mainContainer}>
@@ -20,13 +59,17 @@ class Main extends Component {
             keyboardType='numeric'
             placeholder='convert value'
             placeholderTextColor="white"
+            value={this.state.value}
+            onChange={this.handleChange.bind(this)}
           />
           <CurrencySelector placeholder='↓ from' />
           <CurrencySelector placeholder='↓ to' />
         </View>
         <TouchableHighlight
           style={styles.button}
-          underlayColor='white'>
+          underlayColor='white'
+          onPress={this.convertCurrency.bind(this)}
+        >
           <Text style={styles.buttonText}>Convert</Text>
         </TouchableHighlight>
         <Text style={styles.outputText}>{this.state.output}</Text>
