@@ -11,7 +11,7 @@ class CurrencySelector extends Component {
     super(props);
 
     this.state = {
-      textInputValue: ''
+      selected: ''
     }
   }
   
@@ -56,14 +56,14 @@ class CurrencySelector extends Component {
       <View>
         <ModalPicker
           data={allCurrencies}
-          onChange={(option) => this.setState({ textInputValue: option.label })}
+          onChange={(option) => this.setState({ selected: option.label })}
         >
           <TextInput
             style={currencyInputStyle}
             editable={false}
             placeholder={this.props.placeholder}
             placeholderTextColor="white"
-            value={this.state.textInputValue} />
+            value={this.state.selected} />
         </ModalPicker>
       </View>
     )
