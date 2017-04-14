@@ -14,10 +14,17 @@ class Main extends Component {
   state = {
     value: '',
     output: '',
-    rates: []
+    rates: [],
+    selected: ''
   };
 
+  handleEvent(option) {
+    console.log('handle event');
+    (option) => this.setState({ selected: option.label })
+  }
+
   render() {
+    console.log(this.state)
     return (
       <View style={styles.mainContainer}>
         <Text style={styles.title}>Currency Converter</Text>
@@ -28,7 +35,7 @@ class Main extends Component {
             placeholder='convert value'
             placeholderTextColor="white"
           />
-          <CurrencySelector placeholder='↓ from' />
+          <CurrencySelector onChange={this.handleEvent} placeholder='↓ from' />
           <CurrencySelector placeholder='↓ to' />
         </View>
         <TouchableHighlight

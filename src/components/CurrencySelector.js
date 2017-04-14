@@ -56,7 +56,7 @@ class CurrencySelector extends Component {
       <View>
         <ModalPicker
           data={allCurrencies}
-          onChange={(option) => this.setState({ selected: option.label })}
+          onChange={this.props.onChange}
         >
           <TextInput
             style={currencyInputStyle}
