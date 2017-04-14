@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { currencyInputStyle } from '../styles';
 import CurrencySelector from './CurrencySelector';
+import RatesList from './RatesList';
 
 class Main extends Component {
 
@@ -16,6 +17,14 @@ class Main extends Component {
     output: '',
     rates: []
   };
+
+
+  goToRates() {
+    this.props.navigator.push({
+      component: RatesList,
+      title: 'Rates'
+    })
+  }
 
   render() {
     return (
@@ -35,6 +44,13 @@ class Main extends Component {
           style={styles.button}
           underlayColor='white'>
           <Text style={styles.buttonText}>Convert</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.button}
+          underlayColor='white'
+          onPress={this.goToRates.bind(this)}
+        >
+          <Text style={styles.buttonText}>All Rates</Text>
         </TouchableHighlight>
         <Text style={styles.outputText}>{this.state.output}</Text>
       </View>
